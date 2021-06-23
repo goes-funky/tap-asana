@@ -1,5 +1,5 @@
+import datetime
 
-from singer import utils
 from tap_asana.context import Context
 from tap_asana.streams.base import Stream
 
@@ -37,7 +37,7 @@ class Projects(Stream):
 
   def get_objects(self):
     bookmark = self.get_bookmark()
-    session_bookmark = bookmark
+    session_bookmark = bookmark + datetime.timedelta(milliseconds=1)
     opt_fields = ",".join(self.fields)
     for workspace in Context.asana.client.workspaces.find_all():
       for project in Context.asana.client.projects.find_all(workspace=workspace["gid"], opt_fields=opt_fields):

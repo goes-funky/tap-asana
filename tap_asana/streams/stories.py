@@ -1,5 +1,5 @@
+import datetime
 
-from singer import utils
 from tap_asana.context import Context
 from tap_asana.streams.base import Stream
 
@@ -57,7 +57,7 @@ class Stories(Stream):
 
   def get_objects(self):
     bookmark = self.get_bookmark()
-    session_bookmark = bookmark
+    session_bookmark = bookmark + datetime.timedelta(milliseconds=1)
     opt_fields = ",".join(self.fields)
     for workspace in self.call_api("workspaces"):
       for project in self.call_api("projects", workspace=workspace["gid"]):

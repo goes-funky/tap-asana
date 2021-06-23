@@ -1,17 +1,14 @@
-import math
 import functools
-import datetime
+import math
 import sys
+
 import backoff
 import simplejson
 import singer
-import time
-from singer.messages import StateMessage
-from tap_asana.asana import Asana
-from asana.error import AsanaError, NoAuthorizationError, RetryableAsanaError, InvalidTokenError, RateLimitEnforcedError
+from asana.error import InvalidTokenError, RetryableAsanaError, RateLimitEnforcedError
 from singer import utils
-from tap_asana.context import Context
 
+from tap_asana.context import Context
 
 LOGGER = singer.get_logger()
 

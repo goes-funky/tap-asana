@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
-import os
-import datetime
 import json
-import time
-import math
-import asana
-import functools
+import os
+
 import singer
-from singer import utils
-from singer import metadata
 from singer import Transformer
-from tap_asana.asana import Asana
+from singer import metadata
+from singer import utils
+
+import tap_asana.streams  # Load stream objects into Context
+from tap_asana.asana_client import Asana
 from tap_asana.context import Context
-import tap_asana.streams # Load stream objects into Context
 
 REQUIRED_CONFIG_KEYS = [
     "start_date",
